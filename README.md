@@ -20,6 +20,8 @@ NOCAD - Network based Observability and Controlability Analysis of Dynamical Sys
 
 Please let me know if you have any thoughts, comments or suggestions: janos@abonyilab.com 
 
+For more info about our lab please visit: www.abonyilab.com  
+
 
 
 
