@@ -22,8 +22,10 @@ function [ diam ] = diameter( adj )
 %  The algorithm was implemented by Daniel Leitold 
 
    % the function uses the matlab_bgl to generate the shortest paths
-   mfilepath=fileparts(which('diameter'));
-   addpath(fullfile(mfilepath,'../matlab_bgl'));
+   if ~exist('all_shortest_paths', 'file')
+      mfilepath=fileparts(which('diameter'));
+      addpath([mfilepath,'\..\matlab_bgl']);
+   end
 
    % determine the length of paths, and change the Inf valuest to zero
    dist=all_shortest_paths(sparse(adj));  

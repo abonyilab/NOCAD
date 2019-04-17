@@ -28,9 +28,10 @@ function [ ] = heatmaps( A, iteration )
 %  The algorithm was implemented by Daniel Leitold 
 
 % Add functions of module 2
-mfilepath=fileparts(which('heatmaps'));
-addpath(fullfile(mfilepath,'../module2'));
-
+if ~exist('percentLoopSym', 'file')
+   mfilepath=fileparts(which('heatmaps'));
+   addpath(genpath([mfilepath,'\..\module2']));
+end
 
 %% Change matrix A to logical
 A=A~=0;

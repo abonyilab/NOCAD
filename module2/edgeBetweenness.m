@@ -25,8 +25,11 @@ function [ betweenness ] = edgeBetweenness( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
   
-   mfilepath=fileparts(which('edgeBetweenness'));
-   addpath(fullfile(mfilepath,'../matlab_bgl'));
+   if ~exist('betweenness_centrality', 'file')
+      mfilepath=fileparts(which('edgeBetweenness'));
+      addpath([mfilepath,'\..\matlab_bgl']);
+   end
+   
    [~,betweenness]=betweenness_centrality(sparse(adj));
 
 end

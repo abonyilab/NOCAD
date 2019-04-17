@@ -26,8 +26,10 @@ function [ clusterCon ] = clusterControl( Amatrix, Bmatrix )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
    
-   mfilepath=fileparts(which('clusterControl'));
-   addpath(fullfile(mfilepath,'../matlab_bgl'));
+   if ~exist('all_shortest_paths', 'file')
+     mfilepath=fileparts(which('clusterControl'));
+     addpath([mfilepath,'\..\matlab_bgl']);
+   end
    
    % determine the non-driver nodes
    nonDriverNodes=sum(Bmatrix,2)==0;

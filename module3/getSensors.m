@@ -1,52 +1,40 @@
-function [ matched, unmatched, matchedBy, removable ] = maximumMatchingPF( adj )
-%MAXIMUMMATCHINGPF calculates the maximum matching and then corrects
-% it for controllability and observability. If there is an unmatched SCC,
-% then it will controlled by an input signal such that, if there is an edge
-% from the SCC to an unmatched node, then the unmatched node will be 
-% matched by the SCC. The function returns with matched, unmatched and 
-% matchedBy vector, where the i. node matched by the i. element of 
-% matchedBy. The fourth output is removable, which is a sparse matrix,
-% containing the edges, which can remove from the original network (adj) to
-% provide a suitable matching for system's controllability, observability. 
+function [ nodes ] = getSensors( A )
+%GETSENSORS generates driver nodes for adjacency matrix A, or sensor nodes
+% for state-transition matrix A. It ensures structural controllability or
+% observability with minimum number of drivers or sensors.
 % ##################
 % Example:
 % ##################
 % Input: 
 %
-% adj=[0 1 0 0;0 0 1 0;1 0 0 1;0 0 0 0];   % could be sparse
+% A = [0 1 0 0; 0 0 1 0; 1 0 0 1; 0 0 0 0];
 % ##################
 % Function Calling:
-%
-% [matched, unmatched, matchedBy, removable]=maximumMatchingPF(adj)
+% 
+% [ nodes ] = getSensors( A )
 % ##################
-% Outputs:
+% Output:
 %
-% matched =
-%      2     3     4
-% unmatched =
+% nodes =
 %      1
-% matchedBy =
-%      0     1     2     3
-% removable =
-%    (3,1)        1
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
 % add matlab_bgl to find components
-if ~(exist('components', 'file')==2)
-  mfilepath=fileparts(which('maximumMatchingPF'));
-  addpath([mfilepath,'\..\matlab_bgl']);
+if ~exist('components', 'file')
+   mfilepath=fileparts(which('getSensors'));
+   addpath([mfilepath,'\..\matlab_bgl']);
 end
 
 % execute maximum matching
-[~, ~, matchedBy]=maximumMatching(adj);
+matchedBy=dmperm(A);
 
 % correct some matching value because of SCC
 % find SCCs
-if issparse(adj)
-    compID=components(adj)';
+if issparse(A)
+    compID=components(A)';
 else
-    compID=components(sparse(adj))';
+    compID=components(sparse(A))';
 end
 
 % size of components
@@ -57,7 +45,7 @@ comps=ID(find(numOfID>1));
 
 % add selfloops to comps
 % loops
-loops=find(diag(adj)~=0);
+loops=find(diag(A)~=0);
 
 % add loops' component ID
 comps=union(comps, compID(loops));
@@ -70,12 +58,12 @@ removable=sparse([],[],1,numOfNodes, numOfNodes);
 for ID=unique(comps)
     actualNodes=find(compID==ID);
     % start nodes to SCC
-    incoming=setdiff(find(sum(adj(:,actualNodes),2)~=0), actualNodes);
+    incoming=setdiff(find(sum(A(:,actualNodes),2)~=0), actualNodes);
     if(~isempty(intersect(matchedBy(actualNodes),0)))
         incoming=[incoming;0];
     end
     % target nodes from SCC
-    outgoing=setdiff(find(sum(adj(actualNodes,:),1)~=0), actualNodes);
+    outgoing=setdiff(find(sum(A(actualNodes,:),1)~=0), actualNodes);
     
     % type of SCC
     type=1*isempty(incoming)+2*isempty(outgoing);
@@ -92,7 +80,7 @@ for ID=unique(comps)
                 % if we have to intervene
                 if(~isempty(uncontrolled))
                     possibleDriverNodes=intersect(actualNodes,...
-                        find(adj(:,uncontrolled(1))~=0));
+                        find(A(:,uncontrolled(1))~=0));
                     if(isempty(possibleDriverNodes))
                         matchedBy(actualNodes(1))=0;
                     else
@@ -131,8 +119,7 @@ for ID=unique(comps)
 end
 
 % set output
-matched=find(matchedBy~=0);
-unmatched=find(matchedBy==0);
+nodes = find(matchedBy==0);
 
 
 end

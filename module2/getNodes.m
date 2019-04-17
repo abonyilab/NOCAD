@@ -25,9 +25,11 @@ function [ nDriver, nSensor ] = getNodes(A)
 %  The algorithm was implemented by Daniel Leitold 
 
 % add functions of module 1
-mfilepath=fileparts(which('getNodes'));
-addpath(fullfile(mfilepath,'../module1'));
-    
+if ~exist('maximumMatchingPF', 'file')
+   mfilepath=fileparts(which('getNodes'));
+   addpath(genpath([mfilepath,'\..\module1']));
+end
+
 % determine the driver nodes and its cardinality
 [~,unmatched,~,~] = maximumMatchingPF(A');   % A' is adj
 nDriver = length(unmatched);    

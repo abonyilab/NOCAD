@@ -20,9 +20,10 @@ function [ betweenness ] = nodeBetweenness( adj )
 %      0     2     0
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
-
-    mfilepath=fileparts(which('nodeBetweenness'));
-    addpath(fullfile(mfilepath,'../matlab_bgl'));
+    if ~exist('betweenness_centrality', 'file')
+       mfilepath=fileparts(which('nodeBetweenness'));
+       addpath([mfilepath,'\..\matlab_bgl']);
+    end
     
     betweenness=betweenness_centrality(sparse(adj))';
 
