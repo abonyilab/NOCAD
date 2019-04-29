@@ -1,8 +1,8 @@
-    function [ outCloseness, inCloseness, closeness ] = closenessCentrality( adj )
+function [ outCloseness, inCloseness, closeness ] = closenessCentrality( adj )
 %CLOSENESSCENTRALITY function generates the closeness centrality for
 % directed graph given by adj. The function returns with the closeness, the
 % incloseness, and out closeness, where the closeness is the sum of the n-
-% and out closeness. The function uses the matlab BGL toolbox. 
+% and out closeness.
 % ##################
 % Example:
 % ##################
@@ -26,17 +26,8 @@
 %     2.2500    2.0000    1.3333    1.0000
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
-
-   if ~exist('all_shortest_paths', 'file')
-     mfilepath=fileparts(which('closenessCentrality'));
-     addpath([mfilepath,'\..\matlab_bgl']);
-   end
    
-   if issparse(adj) 
-      paths=all_shortest_paths(adj);
-   else
-      paths=all_shortest_paths(sparse(adj));
-   end
+   paths=allShortestPaths(adj);
    paths(paths==Inf)=0;
    
    inNumOfReachable=sum(paths~=0,1);

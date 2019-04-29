@@ -26,20 +26,11 @@ function [ clusterObs ] = clusterObserve( Amatrix, Cmatrix )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
    
-   if ~exist('all_shortest_paths', 'file')
-     mfilepath=fileparts(which('clusterObserve'));
-     addpath([mfilepath,'\..\matlab_bgl']);
-   end
-   
    % determine driver nodes
    nonSensorNodes=sum(Cmatrix,1)==0;
    
    % generate the shortest paths
-   if issparse(Amatrix)
-      clusterObs=sparse(all_shortest_paths(Amatrix')+1);
-   else
-      clusterObs=all_shortest_paths(sparse(Amatrix'))+1;
-   end
+   clusterObs=allShortestPaths(Amatrix')+1;
    clusterObs(clusterObs==Inf)=0;
    
    % finalize the output matrix

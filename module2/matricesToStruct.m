@@ -273,7 +273,7 @@ Dmatrix=+(Dmatrix~=0);
             centralityNode(1).outCloseness]=closenessCentrality(describeSys.effectGraph);
        end
        if mesConfig.betweennessN
-        centralityNode(1).betweenness=nodeBetweenness(describeSys.effectGraph);
+        centralityNode(1).betweenness=nBetweenness(describeSys.effectGraph);
        end
        if mesConfig.pageRank
         centralityNode(1).pageRank=pageRank(describeSys.effectGraph);
@@ -360,7 +360,7 @@ Dmatrix=+(Dmatrix~=0);
            'endpointSim',{}...
            );
        if mesConfig.betweennessE
-        measureEdge(1).betweenness=edgeBetweenness(describeSys.effectGraph);
+        measureEdge(1).betweenness=betweenness(describeSys.effectGraph);
        end
        if mesConfig.similarity
         [measureEdge(1).similarity, measureEdge(1).edges]=similarity(describeSys.effectGraph);

@@ -38,21 +38,12 @@ function [ relativeDegree ] = degreeRel( Amatrix, Bmatrix, Cmatrix )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-% add matlabBGL toolbox to generate shortest paths
-if ~exist('all_shortest_paths', 'file')
-   mfilepath=fileparts(which('degreeRel'));
-   addpath([mfilepath,'\..\matlab_bgl']);
-end
 % determine the driver nodes
 drivers=driverNodes(Bmatrix);
 % determine the sensor nodes
 sensors=sensorNodes(Cmatrix);
 % generate shortest paths, then corrigate unreachable paths from Inf to 0
-if issparse(Amatrix)
-    sp=sparse(all_shortest_paths(Amatrix));
-else
-    sp=all_shortest_paths(sparse(Amatrix));
-end
+sp=allShortestPaths(sparse(Amatrix));
 sp = sp(logical(sensors),logical(drivers));
 
 % create r_i based on r_ij
