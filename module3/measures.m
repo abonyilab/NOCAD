@@ -31,21 +31,12 @@ if ~exist('closenessCentrality', 'file')
   addpath(genpath([mfilepath,'\..\module2']));
 end
 
-if ~exist('all_shortest_paths', 'file')
-  mfilepath=fileparts(which('measures'));
-  addpath([mfilepath,'\..\matlab_bgl']);
-end
-
 outCloseness = closenessCentrality(A);
 
 % Betweenness
-betw = nodeBetweenness(A);
+betw = nBetweenness(A);
 % All path from s to t except i
-if issparse(A) 
-  all_p=all_shortest_paths(A);
-else
-  all_p=all_shortest_paths(sparse(A));
-end
+all_p=allShortestPaths(A);
 all_p(all_p==Inf)=0;
 
 numOfPath = sum(sum(all_p~=0));

@@ -23,7 +23,7 @@ function [ nodes ] = getSensors( A )
 % add matlab_bgl to find components
 if ~exist('components', 'file')
    mfilepath=fileparts(which('getSensors'));
-   addpath([mfilepath,'\..\matlab_bgl']);
+   addpath([mfilepath,'\..\module1']);
 end
 
 % execute maximum matching

@@ -85,9 +85,9 @@ function [ data ] = extendData( data, targetDegree, alphaPar )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
   
-if ~exist('all_shortest_paths', 'file')
+if ~exist('allShortestPaths', 'file')
    mfilepath=fileparts(which('extendData'));
-   addpath([mfilepath,'\..\matlab_bgl']);
+   addpath([mfilepath,'\..\module2']);
 end
 
 % get the adjacency matrix (not state transition)
@@ -102,7 +102,7 @@ end
 %% senCovSizeRet & actNetMesSizeRet & senNetMesSizeRet
 % target order is the fourt of diameter
 N=data.system.measure.numOfNodes;
-distsAct=all_shortest_paths(sparse(adj));
+distsAct=allShortestPaths(adj);
 distsAct(distsAct==Inf) = N; %replace with the max distance (just for numerical ..)
 distsSen = distsAct';
 

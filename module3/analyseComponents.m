@@ -7,7 +7,6 @@ function newNodes = analyseComponents ( A, actualNodes, maxEnergy)
 % The components created as: for each node in actualNodes, the closest set
 % of nodes are generated, i.e. each node belongs to the closest driver or
 % sensor nodes. 
-% The function uses the matlab BGL toolbox. 
 % ##################
 % Example:
 % ##################
@@ -29,19 +28,13 @@ function newNodes = analyseComponents ( A, actualNodes, maxEnergy)
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-% Add matlab_bgl to the path
-
-if ~exist('all_shortest_paths', 'file')
+if ~exist('allShortestPaths', 'file')
    mfilepath=fileparts(which('analyseComponents'));
-   addpath([mfilepath,'\..\matlab_bgl']);
+   addpath([mfilepath,'\..\module2']);
 end
    
 % Find geodesic paths to determine relative degree
-if issparse(A) 
-  paths=all_shortest_paths(A);
-else
-  paths=all_shortest_paths(sparse(A));
-end
+paths=allShortestPaths(A);
 % Geodesic paths from actualNodes that is equal with energy
 paths = paths(actualNodes,:);
 [energy, byNode] = min(paths,[],1);

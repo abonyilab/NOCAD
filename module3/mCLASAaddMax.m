@@ -27,6 +27,11 @@ function [ res ] = mCLASAaddMax(A, addMax, Niter, Nf)
 % ##################
 %  The algorithm was implemented by Janos Abonyi and Daniel Leitold 
 
+if ~exist('allShortestPaths', 'file')
+   mfilepath=fileparts(which('mCLASAaddMax'));
+   addpath([mfilepath,'\..\module2']);
+end
+
 %% Declare result
 res = [];
 
@@ -46,11 +51,7 @@ res.N = length(A);
 %% Calculate the distance matrix
 % row: from, column: to 
 N=length(A);
-if issparse(A)
-    Dmat=all_shortest_paths(A);
-else
-    Dmat=all_shortest_paths(sparse(A));
-end
+Dmat=allShortestPaths(A);
 Dmat(Dmat==Inf) = N; %replace with the max distance (just for numerical ..)
 
 Df = min(Dmat,Dmat'); %when we modify we are also interested how this not is reachable 
