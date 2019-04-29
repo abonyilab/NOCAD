@@ -32,12 +32,6 @@ function [ matched, unmatched, matchedBy, removable ] = maximumMatchingPF( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-% add matlab_bgl to find components
-if ~(exist('components', 'file')==2)
-  mfilepath=fileparts(which('maximumMatchingPF'));
-  addpath([mfilepath,'\..\matlab_bgl']);
-end
-
 % execute maximum matching
 [~, ~, matchedBy]=maximumMatching(adj);
 

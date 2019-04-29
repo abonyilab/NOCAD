@@ -31,12 +31,6 @@ function [ matched, unmatched, unmatchedSCC, matchedBy ] = maximumMatchingSS( ad
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-% add matlab_bgl to find components
-if ~exist('components', 'file')
-  mfilepath=fileparts(which('maximumMatchingSS'));
-  addpath([mfilepath,'\..\matlab_bgl']);
-end
-
 % execute maximum matching
 [matched, unmatched, matchedBy]=maximumMatching(adj);
 % declare unmatchedSCC
