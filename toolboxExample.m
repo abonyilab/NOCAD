@@ -11,8 +11,6 @@ adj=[
 0 0 0 0 0 1 0 0 0;
 0 0 0 0 0 0 0 0 0];
 
-addpath('module1\');
-addpath('module2\');
 if ~exist('generateMatricesPF', 'file')
    mfilepath=fileparts(which('toolboxExample'));
    addpath([mfilepath,'\module1']);
