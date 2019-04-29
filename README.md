@@ -1,5 +1,5 @@
 # NOCAD
-NOCAD - Network based Observability and Controlability Analysis of Dynamical Systems toolbox (MATLAB version)
+NOCAD - Network based Observability and Controlability Analysis of Dynamical Systems toolbox for MATLAB and Octave
 
 The functions of the toolbox are defined in the manual.
 
