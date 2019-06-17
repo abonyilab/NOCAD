@@ -41,16 +41,16 @@ function [ similarityEdge, edges ] = similarity( adj )
  [from, to]=find(adj);
  edges=[from, to];
  
- numOfEdges=numEdges(adj);
- similarityEdge=zeros(numOfEdges);
+ numEdges=numOfEdges(adj);
+ similarityEdge=zeros(numEdges);
  
- for idxI=1:numOfEdges-1
+ for idxI=1:numEdges-1
      % First edge's start- and endpoints reachabality sets
      fromIn=reachIn(from(idxI),:);
      fromOut=reachOut(from(idxI),:);
      toIn=reachIn(to(idxI),:);
      toOut=reachOut(to(idxI),:);
-     for idxJ=idxI+1:numOfEdges
+     for idxJ=idxI+1:numEdges
         % Second edge's start- and endpoints reachabality sets
         fromIn2=reachIn(from(idxJ),:);
         fromOut2=reachOut(from(idxJ),:);
@@ -66,7 +66,7 @@ function [ similarityEdge, edges ] = similarity( adj )
             ;
      end
  end
- similarityEdge=similarityEdge+similarityEdge'+eye(numOfEdges);
+ similarityEdge=similarityEdge+similarityEdge'+eye(numEdges);
  if issparse(adj)
      similarityEdge=sparse(similarityEdge);
  end

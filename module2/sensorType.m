@@ -52,7 +52,7 @@ function [ source, external, internal, inaccessible ] = sensorType( Amatrix, Cma
     % adj = matrix A - this change the meaning of in and out degree.
     adj=Amatrix;
     sensors=sensorNodes(Cmatrix);
-    numOfNodes=numNodes(adj);
+    numNodes=numOfNodes(adj);
     % no input edges nodes
     zeroIn=sum(adj,1)==0;
     % no output edges nodes
@@ -65,11 +65,11 @@ function [ source, external, internal, inaccessible ] = sensorType( Amatrix, Cma
     remainSensor=find((sensors&~source&~external)~=0);
     % declare the remain two output variables
     if issparse(Amatrix)
-        internal=sparse([],[],1,1,numOfNodes);
-        inaccessible=sparse([],[],1,1,numOfNodes);
+        internal=sparse([],[],1,1,numNodes);
+        inaccessible=sparse([],[],1,1,numNodes);
     else
-        internal=zeros(1,numOfNodes);
-        inaccessible=zeros(1,numOfNodes);
+        internal=zeros(1,numNodes);
+        inaccessible=zeros(1,numNodes);
     end
     for idxI=remainSensor
         %check if it is an internal dilation (more children than parents)

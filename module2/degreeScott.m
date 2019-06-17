@@ -22,11 +22,11 @@ function [ scottDegree ] = degreeScott( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-   numOfNodes=numNodes(adj);
-   if(numOfNodes>1)
-       scottDegree=degree(adj)./(2*(numOfNodes-1));
+   numNodes=numOfNodes(adj);
+   if(numNodes>1)
+       scottDegree=degree(adj)./(2*(numNodes-1));
    else
-       scottDegree=zeros(1,numOfNodes);
+       scottDegree=zeros(1,numNodes);
    end
    
 end

@@ -28,7 +28,7 @@ function [ senSimilarity ] = sensorSimilarity( Amatrix, Cmatrix )
 %  The algorithm was implemented by Daniel Leitold 
   
     % Declare variables
-    numOfStates=numNodes(Amatrix);
+    numOfStates=numOfNodes(Amatrix);
     if issparse(Amatrix)
         senSimilarity=sparse([],[],1,numOfStates, numOfStates);
     else

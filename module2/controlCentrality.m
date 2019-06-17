@@ -22,19 +22,19 @@ function [ CC ] = controlCentrality( Amatrix, Bmatrix )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-    numOfNodes=numNodes(Amatrix);
-    CC=zeros(1,numOfNodes);
+    numNodes=numOfNodes(Amatrix);
+    CC=zeros(1,numNodes);
     driverNodes=find(sum(Bmatrix,2)~=0)';
 
     % Iterate over driver nodes
     for actualNode=driverNodes
         % Generate the b vector for i. driver node
-        subBmatrix=sparse([],[],1,numOfNodes,1);
+        subBmatrix=sparse([],[],1,numNodes,1);
         subBmatrix(actualNode)=1;
         
         % calculate modified controllability matrix: [b Ab .. A^(N-1)b]
         controlMatrix=subBmatrix;
-        for idxI=1:numOfNodes-1
+        for idxI=1:numNodes-1
             subBmatrix=Amatrix*subBmatrix;
             controlMatrix=[controlMatrix, subBmatrix];
         end

@@ -36,11 +36,11 @@ function [ similarityEndp ] = endpointSim( adj )
  % Determine the edges
  [from, to]=find(adj);
  
- numOfNodes=numNodes(adj);
- numOfEdges=numEdges(adj);
- similarityEndp=sparse(zeros(numOfNodes));
+ numNodes=numOfNodes(adj);
+ numEdges=numOfEdges(adj);
+ similarityEndp=sparse(zeros(numNodes));
  
- for idxI=1:numOfEdges
+ for idxI=1:numEdges
     % The edge's start- and endpoints reachabality sets
     fromIn=reachIn(from(idxI),:);
     fromOut=reachOut(from(idxI),:);

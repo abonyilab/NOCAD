@@ -26,12 +26,12 @@ function [ pageR ] = pageRank( adj )
    beta=1;
     
    % calculate PageRank
-   numOfNodes=numNodes(adj);	
+   numNodes=numOfNodes(adj);	
    adj(adj~=0)=1;
    outDegree=degreeOut(adj);
    outDegree(outDegree<1)=1;
    D=diag(outDegree);
-   pageR=beta*(D*((D-alpha*adj')\ones(numOfNodes,1)));
+   pageR=beta*(D*((D-alpha*adj')\ones(numNodes,1)));
     
    % percent conversion
    if(~isempty(pageR))

@@ -28,7 +28,7 @@ function [ ci, sizes ] = components( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-% add matlab_bgl to find components
+% add octave networks toolbox to find components
 if ~exist('adj2adjL', 'file')
   mfilepath=fileparts(which('components'));
   addpath([mfilepath,'\..\octave-networks-toolbox']);

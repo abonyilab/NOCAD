@@ -199,16 +199,16 @@ Dmatrix=+(Dmatrix~=0);
         measureSys(1).observable=isObservable(describeSys.A,describeSys.C);
        end
        if mesConfig.numOfNodes
-        measureSys(1).numOfNodes=numNodes(describeSys.effectGraph);
+        measureSys(1).numOfNodes=numOfNodes(describeSys.effectGraph);
        end
        if mesConfig.numOfEdges
-        measureSys(1).numOfEdges=numEdges(describeSys.effectGraph);
+        measureSys(1).numOfEdges=numOfEdges(describeSys.effectGraph);
        end
        if mesConfig.density
         measureSys(1).density=density(describeSys.effectGraph);
        end
        if mesConfig.diameter
-        measureSys(1).diameter=diameter(describeSys.effectGraph);
+        measureSys(1).diameter=diam(describeSys.effectGraph);
        end
        if mesConfig.degreeFreeman
         measureSys(1).degreeFreeman=degreeFreeman(describeSys.effectGraph);

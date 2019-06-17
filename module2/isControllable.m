@@ -25,7 +25,7 @@ function [ controllable ] = isControllable( Amatrix, Bmatrix )
 %  The algorithm was implemented by Daniel Leitold 
 
     % define N, i.e. the number of nodes
-    numberOfNodes=numNodes(Amatrix);
+    numberOfNodes=numOfNodes(Amatrix);
 
     % generate controlability matrix: C=[B AB .. A^(N-1)B]
     tempMatrix=Bmatrix;

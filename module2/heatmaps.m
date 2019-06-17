@@ -55,7 +55,7 @@ clear from;
 clear to;
 
 %% Get the original number of driver and sensor
-[numOfDriver, numOfSensor]=getNodes(A);
+[numOfDriver, numOfSensor]=getNumNodes(A);
 
 
 %% Declar maps. Set the values for loops and symmetries, that smaller than original
@@ -117,7 +117,7 @@ for loopI=nodeList
             [pLoop,pSym] = percentLoopSym(tmpA);
             loop=[loop, pLoop+1];
             sym=[sym, pSym+1];
-            [nDriv, nSen] = getNodes(tmpA);
+            [nDriv, nSen] = getNumNodes(tmpA);
             driv=[driv, nDriv];
             sen=[sen, nSen];
         end

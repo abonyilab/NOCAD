@@ -23,19 +23,19 @@ function [ OC ] = observeCentrality( Amatrix, Cmatrix )
 %  The algorithm was implemented by Daniel Leitold 
 
 
-    numOfNodes=numNodes(Amatrix);
-    OC=zeros(1,numOfNodes);
+    numNodes=numOfNodes(Amatrix);
+    OC=zeros(1,numNodes);
     sensorNodes=find(sum(Cmatrix,1)~=0);
 
     % Iterate over sensor nodes
     for actualNode=sensorNodes
         % Generate the c vector for i. sensor node
-        subCmatrix=sparse([],[],1,1, numOfNodes);
+        subCmatrix=sparse([],[],1,1, numNodes);
         subCmatrix(actualNode)=1;
         
         % calculate modified observability matrix: [c; cA; ..; cA^(N-1)]
         observeMatrix=subCmatrix;
-        for idxI=1:numOfNodes-1
+        for idxI=1:numNodes-1
             subCmatrix=subCmatrix*Amatrix;
             observeMatrix=[observeMatrix; subCmatrix];
         end

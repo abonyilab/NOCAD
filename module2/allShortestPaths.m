@@ -25,6 +25,12 @@ function [ shortestPaths ] = allShortestPaths( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold.
 
+% add octave networks toolbox to find components
+if ~exist('simpleDijkstra', 'file')
+  mfilepath=fileparts(which('simpleDijkstra'));
+  addpath([mfilepath,'\..\octave-networks-toolbox']);
+end
+
 shortestPaths = [];
 numOfNodes = length(adj);
 for idxI = 1:numOfNodes

@@ -35,6 +35,7 @@ end
    
 % Find geodesic paths to determine relative degree
 paths=allShortestPaths(A);
+
 % Geodesic paths from actualNodes that is equal with energy
 paths = paths(actualNodes,:);
 [energy, byNode] = min(paths,[],1);

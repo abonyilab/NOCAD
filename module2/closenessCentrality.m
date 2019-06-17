@@ -27,6 +27,12 @@ function [ outCloseness, inCloseness, closeness ] = closenessCentrality( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
    
+
+    if ~exist('allShortestPaths', 'file')
+       mfilepath=fileparts(which('closenessCentrality'));
+       addpath([mfilepath,'\..\module2']);
+    end
+    
    paths=allShortestPaths(adj);
    paths(paths==Inf)=0;
    

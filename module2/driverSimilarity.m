@@ -28,7 +28,7 @@ function [ drivSimilarity ] = driverSimilarity( Amatrix, Bmatrix )
 %  The algorithm was implemented by Daniel Leitold 
 
     % Declare variables
-    numOfStates=numNodes(Amatrix);
+    numOfStates=numOfNodes(Amatrix);
     if issparse(Amatrix)
         drivSimilarity=sparse([],[],1,numOfStates, numOfStates);
     else

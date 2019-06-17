@@ -22,11 +22,11 @@ function [ outDegree ] = degreeOut( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-   numOfNodes=numNodes(adj);
+   numNodes=numOfNodes(adj);
    % change weights
    adj(adj~=0)=1;
    % remove loops
-   adj(1:numOfNodes+1:end)=0;
+   adj(1:numNodes+1:end)=0;
    outDegree=sum(adj,2)';
 
 end

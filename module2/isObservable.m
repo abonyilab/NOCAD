@@ -25,7 +25,7 @@ function [ observable ] = isObservable( Amatrix, Cmatrix )
 %  The algorithm was implemented by Daniel Leitold 
 
     % define N, i.e. the number of nodes
-    numberOfNodes=numNodes(Amatrix);
+    numberOfNodes=numOfNodes(Amatrix);
 
     % observability matrix: O=[C; CA; ... ; CA^(N-1)]
     tempMatrix=Cmatrix;

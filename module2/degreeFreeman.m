@@ -24,20 +24,20 @@ function [ freemanDegree ] = degreeFreeman( adj )
 %  The algorithm was implemented by Daniel Leitold 
 
    % set diagonal to zero
-   numOfNodes=numNodes(adj);
+   numNodes=numOfNodes(adj);
    
-   if(numOfNodes>2)
+   if(numNodes>2)
        % generate degrees, and select the maximum
        degrees=degree(adj);
        degreeMax=max(degrees);
 
        % sum the differences
        summary=0;
-       for idxI=1:numOfNodes
+       for idxI=1:numNodes
            summary=summary+(degreeMax-degrees(idxI));
        end
 
-       freemanDegree=summary/((numOfNodes-1)*(numOfNodes-2));
+       freemanDegree=summary/((numNodes-1)*(numNodes-2));
    else
        freemanDegree=[];
    end

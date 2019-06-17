@@ -23,18 +23,18 @@ function [ varianceDegree ] = degreeVariance( adj )
 %  The algorithm was implemented by Daniel Leitold 
 
    % generate degrees, and calculate the mean
-   numOfNodes=numNodes(adj);
-   if(numOfNodes~=0)
+   numNodes=numOfNodes(adj);
+   if(numNodes~=0)
        degrees=degree(adj);
        degreeMean=mean(degrees);
 
        % create the sum
        summary=0;
-       for idxI=1:numOfNodes
+       for idxI=1:numNodes
            summary=summary+(degrees(idxI)-degreeMean)^2;
        end
 
-       varianceDegree=summary/numOfNodes;
+       varianceDegree=summary/numNodes;
    else
        varianceDegree=0;
    end

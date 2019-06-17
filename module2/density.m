@@ -22,9 +22,9 @@ function [ dens ] = density( adj )
 % ##################
 %  The algorithm was implemented by Daniel Leitold 
 
-   numOfNodes=numNodes(adj);
-   if(numOfNodes~=0)
-       dens=numEdges(adj)/(numOfNodes^2);
+   numNodes=numOfNodes(adj);
+   if(numNodes~=0)
+       dens=numOfEdges(adj)/(numNodes^2);
    else
        dens=0;
    end
