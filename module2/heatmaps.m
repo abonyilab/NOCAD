@@ -170,7 +170,7 @@ set(gca,'YDir','normal');
 xlabel('Percent of interaction');
 ylabel('Percent of self-influencing');
 cbar=colorbar();
-colormap('Hot')
+colormap('hot')
 ylabel(cbar,'Number of driver nodes');
 
 % Drawing sensors
@@ -181,7 +181,7 @@ set(gca,'YDir','normal');
 xlabel('Percent of interaction');
 ylabel('Percent of self-influencing');
 cbar=colorbar();
-colormap('Hot')
+colormap('hot')
 ylabel(cbar,'Number of sensor nodes');
 end
 
